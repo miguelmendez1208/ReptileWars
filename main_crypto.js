@@ -57,6 +57,7 @@ import { getConnections } from '@wagmi/core';
 const connections = getConnections(config)
 
 async function startTransaction(){
+  console.log("what?");
   try {
     const result = await sendTransaction(config, {
       to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
@@ -76,4 +77,4 @@ const openConnectModalBtn = document.getElementById('open-connect-modal')
 openConnectModalBtn.addEventListener('click', () => modal.open());
 
 const sendTransactionBtn = document.getElementById('send-transaction');
-sendTransactionBtn.addEventListener('click', ()=> console.log("Transaction sent."));
+sendTransactionBtn.addEventListener('click', ()=> startTransaction);
