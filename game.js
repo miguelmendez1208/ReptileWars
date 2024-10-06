@@ -105,6 +105,8 @@ function declareWinner() {
     }
     flipButton.disabled = true;
     nextRoundButton.style.display = "none";
+    const sendTransactionBtn = document.getElementById('send-transaction');
+    sendTransactionBtn.style="visibility: visible";
 }
 
 // Start game on load

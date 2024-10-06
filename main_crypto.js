@@ -20,7 +20,7 @@ export const anvil = {
   name: 'Anvil',
   currency: 'ETH',
   explorerUrl: 'https://etherscan.io',
-  rpcUrl: "127.0.0.0:8545",
+  rpcUrl: "127.0.0.1:8545",
   chainNamespace: 'eip155'
 };
 export const networks = [mainnet, arbitrum, anvil]
@@ -50,7 +50,30 @@ const modal = createAppKit({
   }
 })
 
+import { sendTransaction } from '@wagmi/core'
+import { parseEther } from 'viem'
+import { config } from './config'
+import { getConnections } from '@wagmi/core';
+const connections = getConnections(config)
+
+async function startTransaction(){
+  try {
+    const result = await sendTransaction(config, {
+      to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+      chainId: 31337,
+      connector: connections[0]?.connector,  
+      value: parseEther('0.01'),
+    });
+    console.log('Transaction successful:', result);
+    return result;
+  } catch (error) {
+    console.error('Transaction failed:', error);
+  }
+}
+
 // 4. Trigger modal programaticaly
 const openConnectModalBtn = document.getElementById('open-connect-modal')
+openConnectModalBtn.addEventListener('click', () => modal.open());
 
-openConnectModalBtn.addEventListener('click', () => modal.open())
+const sendTransactionBtn = document.getElementById('send-transaction');
+sendTransactionBtn.addEventListener('click', ()=> console.log("Transaction sent."));
