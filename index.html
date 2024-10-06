@@ -1,41 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAR</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAR</title>
+  <link rel="stylesheet" href="style.css">
 
 </head>
-<body>
-   
-    <h1>WAR</h1>
-    <div class="card-container">
-        <div>
-            <div id="player1Card" class="card"><img src="cards/back.png" alt="Back of card"></div>
-            <div id="player1Score">Rounds Won: 0</div>
-        </div>
-        <div>
-            <div id="player2Card" class="card"><img src="cards/back.png" alt="Back of card"></div>
-            <div id="player2Score">Rounds Won: 0</div>
-        </div>
-    </div>
-    <div id="player1">
-        <h2>Player 1</h2>
-        <img src="Monsters/orange.gif" alt="Player 1" class="player-img">
-    </div>
-    
-    <div id="player2">
-        <h2>Player 2</h2>
-        <img src="Monsters/green.gif" alt="Player 2" class="player-img">
-    </div>
-    <button id="flipButton">Flip Cards</button>
-    <button id="nextRoundButton" style="display: none;">Next Round</button>
-    <button id="connect-button">Connect Wallet</button>
-    <button id="open-connect-modal">Connect Wallet</button>
-    <button id="open-network-modal">Connect Wallet</button>
 
-    <script src="main_crypto.js" type="module"></script>    <div id="result"></div>
-    <script src="game.js"></script>
+<body>
+
+  <h1>WAR</h1>
+  <div class="card-container">
+    <div>
+      <div id="player1Card" class="card"><img src="cards/back.png" alt="Back of card"></div>
+      <div id="player1Score">Rounds Won: 0</div>
+    </div>
+    <div>
+      <div id="player2Card" class="card"><img src="cards/back.png" alt="Back of card"></div>
+      <div id="player2Score">Rounds Won: 0</div>
+    </div>
+  </div>
+  <div id="player1">
+    <h2>Player 1</h2>
+    <img id="player1CardImage" src="Monsters/orange.gif" alt="Player 1" class="player-img">
+  </div>
+
+  <div id="player2">
+    <h2>Player 2</h2>
+    <img id="player2CardImage" src="Monsters/green.gif" alt="Player 2" class="player-img">
+  </div>
+  <button id="flipButton">Flip Cards</button>
+  <button id="nextRoundButton" style="display: none;">Next Round</button>
+  <button id="open-connect-modal">Connect Wallet</button>
+
+  <script src="main_crypto.js" type="module"></script>
+  <div id="result"></div>
+  <script src="game.js"></script>
+  <script>     // Array of possible image sources
+    const monsterImages = [
+      'Monsters/blue.gif',
+      'Monsters/green.gif',
+      'Monsters/greenbrown.gif',
+      'Monsters/greenyellow.gif',
+      'Monsters/orange.gif',
+      'Monsters/purple.gif'
+      // Add more image paths as needed
+    ];
+
+    function changeMonsterImages() {
+      if (monsterImages.length < 6) {
+        console.error('Expected 6 images, found:', monsterImages.length);
+        return;
+      }
+
+      const randIndex1 = Math.floor(Math.random() * monsterImages.length);
+      const randIndex2 = Math.floor(Math.random() * monsterImages.length);
+
+      console.log('Random indices:', randIndex1, randIndex2);
+
+      const player1Image = document.getElementById('player1CardImage');
+      const player2Image = document.getElementById('player2CardImage');
+
+      if (monsterImages[randIndex1]) {
+        player1Image.src = monsterImages[randIndex1];
+      } else {
+        console.error('Image undefined at index:', randIndex1);
+        player1Image.src = 'Monsters/default1.png';
+      }
+
+      if (monsterImages[randIndex2]) {
+        player2Image.src = monsterImages[randIndex2];
+      } else {
+        console.error('Image undefined at index:', randIndex2);
+        player2Image.src = 'Monsters/default2.png';
+      }
+    }
+
+    // Change images on page load
+    changeMonsterImages();
+  </script>
 </body>
+
 </html>

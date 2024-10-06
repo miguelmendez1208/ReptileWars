@@ -35,7 +35,5 @@ const modal = createAppKit({
 
 // 4. Trigger modal programaticaly
 const openConnectModalBtn = document.getElementById('open-connect-modal')
-const openNetworkModalBtn = document.getElementById('open-network-modal')
 
 openConnectModalBtn.addEventListener('click', () => modal.open())
-openNetworkModalBtn.addEventListener('click', () => modal.open({ view: 'Networks' }))
