@@ -6,7 +6,24 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 // 1. Get a project ID at https://cloud.reown.com
 const projectId = 'dcf2203a8117d45d3f846bad180a0bf5'
 
-export const networks = [mainnet, arbitrum]
+
+console.log("arbitrum obj: ");
+console.log(JSON.stringify(arbitrum, null, 2));
+
+
+export function getBlockchainApiRpcUrl(chainId, namespace) {
+  return `https://rpc.walletconnect.org/v1/?chainId=${namespace}:${chainId}`;
+}
+export const anvil = {
+  id: 'eip155:31337',
+  chainId: 31337,
+  name: 'Anvil',
+  currency: 'ETH',
+  explorerUrl: 'https://etherscan.io',
+  rpcUrl: "127.0.0.0:8545",
+  chainNamespace: 'eip155'
+};
+export const networks = [mainnet, arbitrum, anvil]
 
 // 2. Set up Wagmi adapter
 const wagmiAdapter = new WagmiAdapter({
@@ -25,7 +42,7 @@ const metadata = {
 // 3. Create the modal
 const modal = createAppKit({
   adapters: [wagmiAdapter],
-  networks: [mainnet, arbitrum],
+  networks: networks,
   metadata,
   projectId,
   features: {
