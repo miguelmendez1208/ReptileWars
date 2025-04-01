@@ -6,15 +6,26 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Enable positioning of elements */
+  position: relative;
+  background-image: url("mysterious-icy-cave-with-ancient-ruins-glowing-crystals_525483-4743.jpg"); /* Enable positioning of elements */
 }
+
+#player1Score, #player2Score {
+  color: white; /* Sets the text color to white */
+}
+
 
 h1 {
   margin-bottom: 20px;
+  color: white;
+  font-family: 'Nunito', sans-serif; 
+  font-weight: 700;
+  font-style: normal;
 }
 
 h2 {
   margin: 10px 0;
+  color: white;
 }
 
 .card-container {
@@ -22,6 +33,15 @@ h2 {
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+  padding: 20px; /* Adds padding around the cards for better spacing */ /* Light background to make cards stand out */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgb(255, 255, 255); /* Subtle shadow for depth */
+}
+#pageTitle {
+  color: white; /* Sets the color of the text to white */
+  background-color: black; /* Optional: adds a black background for better contrast */
+  padding: 10px; /* Adds some padding around the text */
+  text-align: center; /* Centers the text horizontally */
 }
 
 .card {
@@ -29,6 +49,15 @@ h2 {
   height: 225px; /* Set the height of the card */
   overflow: hidden;
   margin: 0 15px; /* Add horizontal space between cards */
+  background-color: #fff; /* White background for each card */
+  border-radius: 5px; /* Rounded corners for each card */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Shadow for each card */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Lift the card up on hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Increase shadow to emphasize the lift */
 }
 
 .card img {
@@ -36,11 +65,32 @@ h2 {
   height: auto; /* Maintain aspect ratio */
 }
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+.button-container {
+  display: flex; /* Enables flexbox layout which is ideal for horizontal alignment */
+  justify-content: center; /* Center buttons horizontally within the container */
+  align-items: center; /* Align buttons vertically */
+  gap: 10px; /* Adds space between each button */
+  margin-top: 20px; /* Extra spacing from the top elements */
 }
+
+button {
+  padding: 10px 20px; /* Ensures buttons are large enough and touch-friendly */
+  font-size: 16px; /* Keeps text readable */
+  cursor: pointer; /* Indicates that the element is clickable */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  border: 2px solid transparent; /* Adds a border that becomes visible on hover */
+  background-color: #007bff; /* Initial background color */
+  color: #ffffff; /* Initial text color */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+  color: #fff; /* Text color remains white */
+  transform: translateY(-2px); /* Subtle lift effect */
+  border-color: #0056b3; /* Border color changes to match background on hover */
+}
+
+
 
 #result {
   margin-top: 20px;
@@ -51,21 +101,56 @@ button {
 /* New styles for the virtual players (monsters) */
 #player1, #player2 {
   position: absolute;
-  top: 50%; /* Vertically center the players */
-  transform: translateY(-50%); /* Center the player vertically */
+  top: 50%; /* Set top to 50% of the parent container's height */
+  transform: translateY(-50%); /* Adjust for the element's own height */
+  transition: transform 0.3s ease; /* Smooth transition for transformations */
+  padding: 10px; /* Adds space around the content */
+  border: 2px solid #007bff; /* Blue border */
+  background-color: #000; /* Black background for contrast */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* More pronounced shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+  color: #fff; /* Ensures text inside the box is white for visibility */
 }
 
 #player1 {
-  left: 0; /* Position player 1 (orange monster) on the left */
-  margin-left: 30px;
+  left: 5%; /* Maintain left alignment with responsive percentage */
+  animation: enterFromLeft 1s ease-out forwards; /* Smooth left entrance animation */
 }
 
 #player2 {
-  right: 0; /* Position player 2 (green monster) on the right */
-  margin-right: 30px;
+  right: 5%; /* Maintain right alignment with responsive percentage */
+  animation: enterFromRight 1s ease-out forwards; /* Smooth right entrance animation */
 }
 
 .player-img {
-  width: 300px; /* Adjust the size of the monster GIFs */
-  height: auto;
+  width: 100%; /* Responsive width within container size */
+  max-width: 300px; /* Control maximum width on larger screens */
+  height: auto; /* Maintain aspect ratio */
+  opacity: 0.8; /* Start with slight transparency */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transitions for opacity and transform */
 }
+
+.player-img:hover {
+  opacity: 1; /* Full opacity on hover to highlight */
+}
+
+@keyframes enterFromLeft {
+  from { transform: translateX(-100%) translateY(-50%); }
+  to { transform: translateX(0) translateY(-50%); }
+}
+
+@keyframes enterFromRight {
+  from { transform: translateX(100%) translateY(-50%); }
+  to { transform: translateX(0) translateY(-50%); }
+}
+
+
+
+
+
+
+
+
+
+
+
