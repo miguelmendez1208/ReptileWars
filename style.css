@@ -44,6 +44,7 @@ h2 {
   text-align: center; /* Centers the text horizontally */
 }
 
+
 .card {
   width: 150px; /* Set the width of the card */
   height: 225px; /* Set the height of the card */
@@ -96,6 +97,7 @@ button:hover {
   margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
+  color:aquamarine
 }
 
 /* New styles for the virtual players (monsters) */
